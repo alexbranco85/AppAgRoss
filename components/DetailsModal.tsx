@@ -1,4 +1,4 @@
-import { View, Text, Image, FlatList, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Veiculo {
   id: number;
@@ -11,17 +11,17 @@ interface Veiculo {
   imagemUrl: string;
 }
 
-export function DetailsModal({ veiculoDetail, handleToogleModal }:{ veiculoDetail: Veiculo | undefined, handleToogleModal: Function}) {
+export function DetailsModal({ veiculoDetail, handleToogleModal }: { veiculoDetail: Veiculo | undefined, handleToogleModal: (item?: any) => void }) {
   return (
     <View style={styles.container}>
       <View>
-        <TouchableOpacity>
-          <Text style={styles.close} onPress={() => handleToogleModal()}>[X] Fechar</Text>
+        <TouchableOpacity onPress={() => handleToogleModal(null)}>
+          <Text style={styles.close}>[X] Fechar</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>Detalhes do Veículo:</Text>
-        <Text style={styles.title}><strong>{`${veiculoDetail?.marca} ${veiculoDetail?.modelo}`}</strong></Text>
+        <Text style={styles.title}>{`${veiculoDetail?.marca} ${veiculoDetail?.modelo}`}</Text>
         <Text>{`Ano: ${veiculoDetail?.ano}`}</Text>
         <Text>{`Categoria: ${veiculoDetail?.categoria}`}</Text>
         <Text>{`Valor: R$ ${veiculoDetail?.valor}`}</Text>
@@ -44,10 +44,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: '#000'
-  },
-  divbutton: {
-    textAlign: 'right'
+    color: '#000',
+    fontWeight: 'bold',
   },
   close: {
     textAlign: "center",
@@ -55,11 +53,9 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 8,
     backgroundColor: '#555599',
-    paddingTop: 4,
-    paddingBottom: 4,
+    paddingVertical: 4,
     paddingHorizontal: 15,
     borderRadius: 10,
     color: '#fff',
-    width: 110,
   }
-})
+});

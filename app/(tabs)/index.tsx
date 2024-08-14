@@ -165,16 +165,16 @@ const App = () => {
 
   const renderItem = ({ item }: { item: Veiculo }) => (
     <View style={styles.card}>
-      {/* <Image source={{ uri: item.imagemUrl }} style={styles.image} /> */}
       <View style={styles.textContainer}>
         <Text style={styles.marcaModelo}>{`${item.marca} ${item.modelo}`}</Text>
         <Text>{`Ano: ${item.ano}`}</Text>
-        <TouchableOpacity>
-          <Text onPress={() => handleToogleModal(item)} style={styles.button}>+ Detalhes</Text>
+        <TouchableOpacity onPress={() => handleToogleModal(item)}>
+          <Text style={styles.button}>+ Detalhes</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
+
 
   return (
     <>
